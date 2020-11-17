@@ -20,7 +20,13 @@ const userSchema = ({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    tokens: [{
+        token: {
+            type: String,
+            required: true
+        }
+    }]
 })
 
 module.exports = User = mongoose.model('user', userSchema)

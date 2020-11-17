@@ -57,25 +57,17 @@ async (req,res) => {
 
     await user.save();
 
-    //return jsonwebtoken
-
-     const payload = {
-         user: {
-             id: user.id
-         }
-     }
-
-     jwt.sign(
-         payload,
-         config.get('jwtSecret'),
-         { expiresIn: 360000},
-         (err, token) => {
-             if(err) throw err;
-             res.json({ token });
-         }
-     )
+    const payload = {
+        user: {
+            id: user.id
+        }
+    }
+    // get token while signup
+     const token = jwt.sign(payload, config.get('jwtSecret'),{ expiresIn: 360000 }) 
+     user.tokens = user.tokens.concat({ token })
+     await user.save()
      
-        res.send('user registered')
+    res.status(201).send({ user, token })
     } catch (error) {
         console.log(error.message)
         res.status(500).send('Server error !')
