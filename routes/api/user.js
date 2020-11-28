@@ -63,7 +63,7 @@ async (req,res) => {
         }
     }
     // get token while signup
-     const token = jwt.sign(payload, config.get('jwtSecret'),{ expiresIn: 360000 }) 
+     const token = jwt.sign(payload, config.get('jwtSecret')) 
      user.tokens = user.tokens.concat({ token })
      await user.save()
      
