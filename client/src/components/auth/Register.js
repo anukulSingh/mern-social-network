@@ -23,7 +23,7 @@ const Register = ({ setAlert }) => {
             setAlert('Password does not match','danger');
         }
         else {
-             console.log('SUCCESS')
+             setAlert('Good to go','success')
             // const newUser = {
             //     name,
             //     email,
