@@ -1,12 +1,13 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 
-import { setAlert } from '../../actions/alert'
+import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert,register }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -23,25 +24,7 @@ const Register = ({ setAlert }) => {
             setAlert('Password does not match','danger');
         }
         else {
-             setAlert('Good to go','success')
-            // const newUser = {
-            //     name,
-            //     email,
-            //     password,
-            //     password
-            // }
-            // try {
-            //     const config = {
-            //         headers: {
-            //             'Content-Type': 'application/json'
-            //         }
-            //     }
-            //     const body = JSON.stringify(newUser);
-            //     const res = await axios.post('/api/users',body,config);
-            //     console.log(res.data);
-            // } catch (error) {
-            //     console.log(error.response.data);
-            // }
+             register({ name,email,password })
         }
     }
 
@@ -56,11 +39,11 @@ const Register = ({ setAlert }) => {
             <form onSubmit={e => onSubmit(e)}>
                 <div class="form-group">
                     {/* <label for="name">Name</label> */}
-                    <input type="text" required name="name" class="form-control" id="email" placeholder="Enter your name" value={name} onChange={e => onChange(e)} />
+                    <input type="text" name="name" class="form-control" id="email" placeholder="Enter your name" value={name} onChange={e => onChange(e)} />
                 </div>
                 <div class="form-group">
                     {/* <label for="email">Email address</label> */}
-                    <input type="email" required name="email" class="form-control" id="email" placeholder="Enter email" value={email} onChange={e => onChange(e)} />
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" value={email} onChange={e => onChange(e)} />
                     <small class="form-text text-muted">This site uses gravatar for profile image</small>
                 </div>
                 <div class="form-group">
@@ -91,6 +74,7 @@ const Register = ({ setAlert }) => {
 }
 Register.propTypes = {
     setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
 }
 
-export default connect(null, { setAlert })(Register)
+export default connect(null, { setAlert,register })(Register)

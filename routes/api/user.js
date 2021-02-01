@@ -67,7 +67,7 @@ async (req,res) => {
      user.tokens = user.tokens.concat({ token })
      await user.save()
      
-    res.status(201).send({ user, token })
+    res.status(201).send({ token })
     } catch (error) {
         console.log(error.message)
         res.status(500).send('Server error !')
