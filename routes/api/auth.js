@@ -67,7 +67,7 @@ router.post('/', [
      const token = jwt.sign(payload, config.get('jwtSecret'),{ expiresIn: 360000 }) 
      user.tokens = user.tokens.concat({ token })
      await user.save()
-     res.send({ user, token })
+     res.send({ token })
     }  catch(err) {
         console.error(err.message);
         res.status(500).send('Server error');
