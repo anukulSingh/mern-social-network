@@ -9,7 +9,13 @@ import { logout } from '../../actions/auth'
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 const authLinks = (
+  <ul>
+    
+  <li class="nav-item">
+      <Link to="/dashboard" class="nav-link" >Dashboard</Link>
+  </li>
   <a onClick={logout} href="#!">Logout</a>
+  </ul>
 );
 
 const guestLinks = (
@@ -45,7 +51,7 @@ return (
     )
 }
 
-Navbar.PropTypes = {
+Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 }
