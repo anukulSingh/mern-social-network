@@ -1,3 +1,11 @@
+### All the URL endpoints can be categorized under following:
+- [Posts](#posts)
+- [Profiles](#profiles)
+- [Users and Auth](#users-and-auth)
+
+### Endpoints with Authorization header requires users's Sign-in and registration
+### Any raw data packet received from the client side should be in JSON format<hr/>
+
 # Posts
 
 ## Indices
@@ -5,10 +13,10 @@
 - [Add a post](#1-add-a-post)
 - [Delete a comment](#2-delete-a-comment)
 - [Delete a post by id](#3-delete-a-post-by-id)
-- [GET a post by id](#4-get--a-post-by-id)
+- [GET a post by id](#4-get-a-post-by-id)
 - [Get all posts](#5-get-all-posts)
 - [Like a post](#6-like-a-post)
-- [Post a comment on a post](#7-post-a-comment-on-a-post)
+- [Comment on a post](#7-comment-on-a-post)
 - [Unlike a post](#8-unlike-a-post)
 
 ---
@@ -33,7 +41,7 @@ URL: http://localhost:5000/api/posts
 
 ```js
 {
-    "text": "delete it"
+    "text": "Some content to be posted !"
 }
 ```
 
@@ -43,8 +51,8 @@ URL: http://localhost:5000/api/posts
 
 ```bash
 Method: DELETE
-Type:
-URL: http://localhost:5000/api/posts/comment/5fe1e43f5445ca5c28a440f1/5fe203c3e1524a0cd08d5102
+Params: ["postId", "commentId"]
+URL:http://localhost:5000/api/posts/comment/5fe1e43f5445ca5c28a440f1/5fe203c3e1524a0cd08d5102
 ```
 
 **_Headers:_**
@@ -59,8 +67,8 @@ URL: http://localhost:5000/api/posts/comment/5fe1e43f5445ca5c28a440f1/5fe203c3e1
 
 ```bash
 Method: DELETE
-Type:
-URL: http://localhost:5000/api/posts/5fe1e9bcf1f917509c9cdbba
+Params: ["postId]
+URL:http://localhost:5000/api/posts/5fe1e9bcf1f917509c9cdbba
 ```
 
 **_Headers:_**
@@ -75,8 +83,8 @@ URL: http://localhost:5000/api/posts/5fe1e9bcf1f917509c9cdbba
 
 ```bash
 Method: GET
-Type:
-URL: http://localhost:5000/api/posts/5fe1e43f5445ca5c28a440f1
+Params: ["postId"]
+URL:http://localhost:5000/api/posts/5fe1e43f5445ca5c28a440f1
 ```
 
 **_Headers:_**
@@ -91,7 +99,6 @@ URL: http://localhost:5000/api/posts/5fe1e43f5445ca5c28a440f1
 
 ```bash
 Method: GET
-Type:
 URL: http://localhost:5000/api/posts
 ```
 
@@ -107,8 +114,8 @@ URL: http://localhost:5000/api/posts
 
 ```bash
 Method: PUT
-Type:
-URL: http://localhost:5000/api/posts/like/5fe1e3975445ca5c28a440f0
+Params: ["postId"]
+URL:http://localhost:5000/api/posts/like/5fe1e3975445ca5c28a440f0
 ```
 
 **_Headers:_**
@@ -117,14 +124,15 @@ URL: http://localhost:5000/api/posts/like/5fe1e3975445ca5c28a440f0
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZiNTM3NTQ2ODY2YTY0MjQwNGFlNzBjIn0sImlhdCI6MTYwODYzODk5MCwiZXhwIjoxNjA4OTk4OTkwfQ.bhgd7Q1dIrrsvIYECTof9I_rkfiSxaT1jK9fr3aDPJk |             |
 
-### 7. Post a comment on a post
+### 7. Comment on a post
 
 **_Endpoint:_**
 
 ```bash
 Method: POST
 Type: RAW
-URL: http://localhost:5000/api/posts/comment/5fe1e43f5445ca5c28a440f1
+Params: ["postId"]
+URL:http://localhost:5000/api/posts/comment/5fe1e43f5445ca5c28a440f1
 ```
 
 **_Headers:_**
@@ -137,7 +145,7 @@ URL: http://localhost:5000/api/posts/comment/5fe1e43f5445ca5c28a440f1
 
 ```js
 {
-    "text": "bad  one!"
+    "text": "some random comment on a post!"
 }
 ```
 
@@ -147,8 +155,8 @@ URL: http://localhost:5000/api/posts/comment/5fe1e43f5445ca5c28a440f1
 
 ```bash
 Method: PUT
-Type:
-URL: http://localhost:5000/api/posts/unlike/5fe1e3975445ca5c28a440f0
+Params: ["postId"]
+URL:http://localhost:5000/api/posts/unlike/5fe1e3975445ca5c28a440f0
 ```
 
 **_Headers:_**
@@ -157,44 +165,43 @@ URL: http://localhost:5000/api/posts/unlike/5fe1e3975445ca5c28a440f0
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZiNTM3NTQ2ODY2YTY0MjQwNGFlNzBjIn0sImlhdCI6MTYwODYzODk5MCwiZXhwIjoxNjA4OTk4OTkwfQ.bhgd7Q1dIrrsvIYECTof9I_rkfiSxaT1jK9fr3aDPJk |             |
 
-<br/>
+<br/><hr/>
 
 # Profiles
 
 ## Indices
 
-- [GET all profiles](#1-get-all-profiles)
-- [Get user by id](#2-get-user-by-id)
-- [add profile education](#3-add-profile-education)
-- [add profile experience](#4-add-profile-experience)
-- [create /update profile](#5-create-update-profile)
-- [delete profile and users](#6-delete-profile-and-users)
-- [delete profile education](#7-delete-profile-education)
-- [delete profile experience](#8-delete-profile-experience)
+- [get profiles of all users](#1-get-all-profiles)
+- [get a user profile by id](#2-get-user-by-id)
+- [add education for a user](#3-add-profile-education)
+- [add experience for a user](#4-add-profile-experience)
+- [create/update profile](#5-create-update-profile)
+- [delete one's profile and account](#6-delete-profile-and-users)
+- [delete education from profile](#7-delete-profile-education)
+- [delete experience from profile](#8-delete-profile-experience)
 
 ---
 
-### 1. GET all profiles
+### 1. Get all profiles
 
 **_Endpoint:_**
 
 ```bash
 Method: GET
-Type:
 URL: http://localhost:5000/api/profile
 ```
 
-### 2. Get user by id
+### 2. Get a user's profile by id
 
 **_Endpoint:_**
 
 ```bash
 Method: GET
-Type:
-URL: http://localhost:5000/api/profile/user/5fb537546866a642404ae70c
+Params: ["userId"]
+URL:http://localhost:5000/api/profile/user/5fb537546866a642404ae70c
 ```
 
-### 3. add profile education
+### 3. Add profile education
 
 **_Endpoint:_**
 
@@ -209,7 +216,7 @@ URL: http://localhost:5000/api/profile/education
 | Key           | Value                                                                                                                                                                                   | Description       |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZiNTM3NTQ2ODY2YTY0MjQwNGFlNzBjIn0sImlhdCI6MTYwNjU3MDYwNiwiZXhwIjoxNjA2OTMwNjA2fQ.Mdk6mB_ySyTOPI77zM382oOO4NSe79PeTEoapbmNNmI |                   |
-| Content-Type  | application/json                                                                                                                                                                        | JSON content type |
+                                                                                                                                                                   
 
 **_Body:_**
 
@@ -239,7 +246,7 @@ URL: http://localhost:5000/api/profile/experience
 | Key           | Value                                                                                                                                                                                   | Description       |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZiNTM3NTQ2ODY2YTY0MjQwNGFlNzBjIn0sImlhdCI6MTYwNjU3MDYwNiwiZXhwIjoxNjA2OTMwNjA2fQ.Mdk6mB_ySyTOPI77zM382oOO4NSe79PeTEoapbmNNmI |                   |
-| Content-Type  | application/json                                                                                                                                                                        | JSON content type |
+
 
 **_Body:_**
 
@@ -249,12 +256,12 @@ URL: http://localhost:5000/api/profile/experience
     "company": "ToolSpy",
     "location": "LA",
     "from": "8-04-2014",
-    "current": true,
-    "description": "random stuffs some"
+    "current": true, (working currently or not)
+    "description": "some random stuffs"
 }
 ```
 
-### 5. create /update profile
+### 5. Create/Update profile
 
 **_Endpoint:_**
 
@@ -269,7 +276,7 @@ URL: http://localhost:5000/api/profile
 | Key           | Value                                                                                                                                                                                   | Description       |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZiNTM3NTQ2ODY2YTY0MjQwNGFlNzBjIn0sImlhdCI6MTYwNTcxMTcwMSwiZXhwIjoxNjA2MDcxNzAxfQ.vkPzkoZx2-iPf-6gBLjOG6mMVqolnzQqxZbOUYzhwY8 |                   |
-| Content-Type  | application/json                                                                                                                                                                        | JSON content type |
+
 
 **_Body:_**
 
@@ -287,13 +294,12 @@ URL: http://localhost:5000/api/profile
 }
 ```
 
-### 6. delete profile and users
+### 6. Delete one's account and hence profile
 
 **_Endpoint:_**
 
 ```bash
 Method: DELETE
-Type:
 URL: http://localhost:5000/api/profile
 ```
 
@@ -303,14 +309,14 @@ URL: http://localhost:5000/api/profile
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZiNTNkYjM1ZTk3MjQzYjA0MmJhMDZkIn0sImlhdCI6MTYwNTcxMzMzMiwiZXhwIjoxNjA2MDczMzMyfQ.1uN0c0BCbP88wLlYn3jNLc71vSVSoN6GUHsHYIJo_g4 |             |
 
-### 7. delete profile education
+### 7. Delete profile education
 
 **_Endpoint:_**
 
 ```bash
 Method: DELETE
-Type:
-URL: http://localhost:5000/api/profile/education/5fc25bdf78d34915845e3229
+Params: ["profileId"]
+URL:http://localhost:5000/api/profile/education/5fc25bdf78d34915845e3229
 ```
 
 **_Headers:_**
@@ -319,13 +325,13 @@ URL: http://localhost:5000/api/profile/education/5fc25bdf78d34915845e3229
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZiNTM3NTQ2ODY2YTY0MjQwNGFlNzBjIn0sImlhdCI6MTYwNjU3MDYwNiwiZXhwIjoxNjA2OTMwNjA2fQ.Mdk6mB_ySyTOPI77zM382oOO4NSe79PeTEoapbmNNmI |             |
 
-### 8. delete profile experience
+### 8. Delete profile experience
 
 **_Endpoint:_**
 
 ```bash
 Method: DELETE
-Type:
+Params: ["profileId"]
 URL: http://localhost:5000/api/profile/experience/5fb548000054112ac8dbb411
 ```
 
@@ -335,19 +341,17 @@ URL: http://localhost:5000/api/profile/experience/5fb548000054112ac8dbb411
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZiNTM3NTQ2ODY2YTY0MjQwNGFlNzBjIn0sImlhdCI6MTYwNjU3MDYwNiwiZXhwIjoxNjA2OTMwNjA2fQ.Mdk6mB_ySyTOPI77zM382oOO4NSe79PeTEoapbmNNmI |             |
 
-# Users & Auth
+# Users and Auth
 
 ## Indices
 
-- [Get auth user](#1-get-auth-user)
-- [Get logged in users profile](#2-get-logged-in-users-profile)
-- [Login user](#3-login-user)
-- [Register user](#4-register-user)
-- [get logged in user profile](#5-get-logged-in-user-profile)
-
+- [Get my credentials](#1-get-my-credentials)
+- [Get logged in user's profile](#2-get-logged-in-users-profile)
+- [Login for a user](#3-login-user)
+- [Register a user](#4-register-user)
 ---
 
-### 1. Get auth user
+### 1. Get my credentials
 
 **_Endpoint:_**
 
@@ -373,13 +377,12 @@ URL: http://localhost:5000/api/auth
 }
 ```
 
-### 2. Get logged in users profile
+### 2. Get logged in user's profile
 
 **_Endpoint:_**
 
 ```bash
 Method: GET
-Type:
 URL: http://localhost:5000/api/profile/me
 ```
 
@@ -387,7 +390,7 @@ URL: http://localhost:5000/api/profile/me
 
 | Key          | Value                                                                                                                                                                                   | Description |
 | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| x-auth-token | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY3ZWQxOTliOWNiZDIzMDM0YTRlOWRlIn0sImlhdCI6MTYwMjI0MDU2MCwiZXhwIjoxNjAyNjAwNTYwfQ.q4YKxWCyUHRG_nprvnpmHEJHaCOIRBysMIZwPIMPJyM |             |
+| Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY3ZWQxOTliOWNiZDIzMDM0YTRlOWRlIn0sImlhdCI6MTYwMjI0MDU2MCwiZXhwIjoxNjAyNjAwNTYwfQ.q4YKxWCyUHRG_nprvnpmHEJHaCOIRBysMIZwPIMPJyM |             |
 
 ### 3. Login user
 
@@ -401,9 +404,6 @@ URL: http://localhost:5000/api/auth
 
 **_Headers:_**
 
-| Key          | Value            | Description |
-| ------------ | ---------------- | ----------- |
-| Content-Type | application/json |             |
 
 **_Body:_**
 
@@ -434,20 +434,4 @@ URL: http://localhost:5000/api/users
 }
 ```
 
-### 5. get logged in user profile
 
-**_Endpoint:_**
-
-```bash
-Method: GET
-Type:
-URL: http://localhost:5000/api/profile/me
-```
-
-**_Headers:_**
-
-| Key           | Value                                                                                                                                                                                   | Description |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWZiM2E2MTVhNmIwNzEwNjkwYTZkYjA3In0sImlhdCI6MTYwNTYwODk4MiwiZXhwIjoxNjA1OTY4OTgyfQ.E6PYsjezSAV0CbCrVXhuQm0oT4XpxNA6RLgv-B6VQz0 |             |
-
----
