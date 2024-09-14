@@ -13,12 +13,12 @@
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "config": "^3.3.2",
-    "express": "^4.17.1",
-    "express-validator": "^6.6.1",
-    "gravatar": "^1.8.1",
+    "config": "^3.3.12",
+    "express": "^4.19.2",
+    "express-validator": "^6.15.0",
+    "gravatar": "^1.8.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.14",
+    "mongoose": "^5.13.22",
     "request": "^2.88.2"
   },
   "devDependencies": {
